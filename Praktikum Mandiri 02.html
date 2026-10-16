@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pemesanan Barang</title>
+</head>
+<body>
+
+  <!-- ===== MENU PAJANGAN (KECIL & RAMPING, BUKAN LINK) ===== -->
+  <table border="1" width="60%" cellpadding="2" cellspacing="0" align="center">
+    <tr align="center">
+      <td><small>Home</small></td>
+      <td><small>Generate Link</small></td>
+      <td><small>Transaction History</small></td>
+      <td><small>Policy</small></td>
+      <td><small>Logout</small></td>
+    </tr>
+  </table>
+
+  <h2 align="center">Form Pemesanan Barang</h2>
+
+  <form action="#" method="post" enctype="multipart/form-data">
+
+    <table border="1" cellpadding="10" cellspacing="0" align="center">
+      <tr>
+
+        <!-- ===== KOLOM KIRI : FOTO ===== -->
+        <td valign="top" align="center" width="260">
+
+          <!-- Kotak foto: awalnya silang, langsung berganti foto saat file dipilih -->
+          <img id="preview" width="230" height="230" border="2" alt="Kotak foto barang"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='230' height='230'%3E%3Cline x1='0' y1='0' x2='230' y2='230' stroke='black'/%3E%3Cline x1='230' y1='0' x2='0' y2='230' stroke='black'/%3E%3C/svg%3E">
+
+          <br><br>
+
+          <label for="foto"><b>Upload Picture</b></label>
+          <br>
+          <input type="file" id="foto" name="foto" accept="image/*" required>
+          <br>
+          <small>Format: JPG, PNG, atau GIF</small>
+
+        </td>
+
+        <!-- ===== KOLOM KANAN : DATA BARANG ===== -->
+        <td valign="top">
+
+          <table cellpadding="6" cellspacing="0">
+
+            <tr>
+              <td><label for="title">Title Here :</label></td>
+              <td>
+                <input type="text" id="title" name="title" size="45"
+                       placeholder="Contoh: MacBook Air Rp15.000.000" required>
+              </td>
+            </tr>
+
+            <tr>
+              <td valign="top"><label for="desc">Description :</label></td>
+              <td>
+                <textarea id="desc" name="desc" rows="6" cols="42"
+                          placeholder="Year :&#10;Model :&#10;Condition :"></textarea>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="pembayaran">Pembayaran :</label></td>
+              <td>
+                <select id="pembayaran" name="pembayaran" required>
+                  <option value="">-- Pilih metode pembayaran --</option>
+                  <option value="Bank">Bank</option>
+                  <option value="QRIS">QRIS</option>
+                  <option value="Cash">Cash</option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="transaction">Transaction :</label></td>
+              <td>
+                <select id="transaction" name="transaction">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+                <br>
+                <small>* Jumlah transaksi maksimal 5.</small>
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <input type="checkbox" id="kirim_hp" name="kirim_hp" checked>
+                <label for="kirim_hp">Send to Mobile Phone</label>
+                <br>
+                <input type="checkbox" id="kirim_email" name="kirim_email" checked>
+                <label for="kirim_email">Send to Email</label>
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="hp">Send to Mobile Phone :</label></td>
+              <td>
+                <input type="tel" id="hp" name="hp" size="45" placeholder="08123456789">
+              </td>
+            </tr>
+
+            <tr>
+              <td><label for="email">Send to Email :</label></td>
+              <td>
+                <input type="email" id="email" name="email" size="45" placeholder="nama@email.com">
+              </td>
+            </tr>
+
+            <tr>
+              <td></td>
+              <td>
+                <button type="submit">Kirim Pesanan</button>
+                <button type="reset">Reset</button>
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+  <br>
+  <hr>
+  <p align="center"><small>Praktikum 2 - HTML Form</small></p>
+
+  <!-- ===== SCRIPT: foto langsung muncul di kotak ===== -->
+  <script>
+    var input   = document.getElementById("foto");
+    var preview = document.getElementById("preview");
+
+    input.addEventListener("change", function () {
+      var file = input.files[0];
+      if (!file) return;
+
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;   // ganti kotak silang dengan foto
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+
+</body>
+</html>
